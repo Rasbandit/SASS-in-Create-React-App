@@ -1,0 +1,25 @@
+.text-holder {
+  width: 400px;
+  color: $primary-color;
+  margin: auto;
+  font-family: $main-font;
+  font-size: 20px;
+}
+
+.flex {
+  @include flexSetUp(flex-start, center);
+  @include width-height(800px, 150px);
+  background: blue;
+  margin: 20px auto;
+
+  .item {
+    @include width-height(30px, 120px);
+    background: $primary-color;
+  }
+}
+
+.item {
+  background: pink;
+  @include width-height(420px, 130px);
+  margin: 20px auto;
+}
