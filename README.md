@@ -14,7 +14,7 @@ First you will need to install the SASS loader into your react App. To do that r
 
 After installing `node-sass-chokidar` and `npm-run-all` you will need to change the scripts that are in your package.json.
 
-After you install those two packages go to your package.json file and add these two lines to the top of the scrips list,
+After you install those two packages go to your package.json file and add these two lines to the top of the scripts list,
 
 <pre>
 "build-css": "node-sass-chokidar src/ -o src/",
