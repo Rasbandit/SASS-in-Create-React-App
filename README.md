@@ -10,38 +10,19 @@ SASS has two different versions that you can use, SCSS and Sass. Sass does not u
 
 First you will need to install the SASS loader into your react App. To do that run the following command and install two packages.
 
-`npm install --save node-sass-chokidar npm-run-all`
+`npm i node-sass`
 
-After installing `node-sass-chokidar` and `npm-run-all` you will need to change the scripts that are in your package.json.
-
-After you install those two packages go to your package.json file and add these two lines to the top of the scripts list,
-
-<pre>
-"build-css": "node-sass-chokidar src/ -o src/",
-"watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-</pre>
-
-Then you will need to change the start and build scripts while also adding on this `start-js` script.
-
-<pre>
-"start-js": "react-scripts start",
-"start": "npm-run-all -p watch-css start-js",
-"build": "npm run build-css && react-scripts build",
-</pre>
-
-Now when your `run npm start` or `yarn start` it will compile all the SCSS and Sass files into css files.
+Instruction on how to implement SASS below.
 
 ## SASS file structure
 
 When using SASS we often refer to the what ever file uses SASS or SCSS as a SASS file. Below I refer to the process as SASS but the files will use the SCSS extension.
 
-When using SASS by default it will make a css version of all your SCSS files. This can be useful, however it can be annoying to load each file individually to each component. It would be easier to compile all the files into one css file and importing once into your index.js file.
+Take a look at the styles folder in this repo. You will notice that I don't import those files into react anywhere. We are going to make one file that chooses the load order of all our SCSS files, called main.scss. The reason for this is that the compiler will work in alphabetical order, and files like our reset.scss and variables.scss need to come before the other files to work properly. Also SCSS loads everything top to bottom so if our reset file came in the middle it would undo most of the styles above it.
 
-Take a look at the styles folder in this repo. You will notice that I have all the SCSS files names starting with an `_`. By doing this the compiler will ignore these files. We are going to make one file that chooses the load order of all our SCSS files, called main.scss. The reason for this is that the compiler will work in alphabetical order, and files like our reset.scss and variables.scss need to come before the other files. Also SCSS loads everything top to bottom so if our reset file came in the middle it would undo most of the styles above it.
+I like to make one file for each component or route that I am working on so I have made a folder for each one.
 
-I like to make one file for each component or route that I am working on so I have made a folder for each one. Again those files have the `_` in front of the file name.
-
-Finally I have the main.scss file that only has import statements. This way we can choose what files to load first. Every time you make a new .scss file you will need to import it into the main.scss. When you run `npm start` it will create a file called main.css. This is the file you will import into component. You should only need to import it once into your index.js.
+Finally I have the main.scss file that only has import statements. This way we can choose what files to load first. Every time you make a new .scss file you will need to import it into the main.scss. Then import this file into your `index.js` file like this `import './style/main.scss`. When you run `npm start` it will convert all the scss files into css files that can be read by the browser. 
 
 ## Using SASS
 
